@@ -4,6 +4,9 @@ function PetChat(){
   var display = document.getElementById("display");
   var numPets = null;
   var voice = "Honeybadger doesn't care. "
+  var petList = [];
+  var output = "";
+
   function Pet (type, name, voice) {
     this.type = type;
     this.name = name;
@@ -29,10 +32,14 @@ function PetChat(){
       var type = prompt("What is pet #" + (i+1) + "? (cat, dog, bird)");
       var name = prompt("What is pet #" + (i+1) + "'s name'?");
       speak(type);
-      var textOut = type + " " + name + " " + voice + "<br />";
+      //var textOut = type + " " + name + " " + voice + "<br />";
       var myPet = new Pet(type, name, voice);
-      display.innerHTML += textOut;
+      petList.push(myPet);
     }
+    for(var i = 0; i < petList.length; i++) {
+      output += petList[i].type + " " + petList[i].name +" "+ petList[i].voice + "<br>";
+    }
+      display.innerHTML += output;
   };
 
   this.init = function(){
